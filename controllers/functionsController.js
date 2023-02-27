@@ -3,6 +3,9 @@ const fileDal = require("../dal/fileDal");
 const { Utils } = require("sequelize");
 const email = require("../utils/email");
 const sendEmail = require("../utils/email");
+const Warning = require("../models/warning");
+const userController=require("./userController")
+const fileController=require("./fileController")
 
 //כניסה לקטגוריה
 const enterIntoCategory = async(id) => {
@@ -34,6 +37,16 @@ const sendEmail = (to,subject,massege)=>{
    // email('36213259948@mby.co.il', 'I love you', 'How are you?');
    email(to,subject,massege);
 }
+const sendEmailOfWarning=(warning)=>{
+    const user=warning.user_id;
+    const to=userController.getUserById(user).email;
+    if(!to){
+        return 'not defined email'
+    }
+    const file=warning.file_id;
+    file_name=fileController.openFile(file).name;
+    massege=`You have a warning of file: ${file_name}
+    ${warning.text}`
 
 //חיפוש קובץ/תיקייהgit 
 
