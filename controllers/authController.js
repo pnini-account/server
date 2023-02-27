@@ -21,8 +21,13 @@ const login = async (req, res) => {
     res.send("Logged In")
 
     const userInfo= {id:foundUser.id,name:foundUser.name,
-        roles:foundUser.roles, username:foundUser.username}
-        
+        email:foundUser.email, warningsId:foundUser.warningsId,
+        filesId:foundUser.filesId,foldersId:foundUser.foldersId,
+        categoriesId:foundUser.categoriesId} 
+
+    const accessToken = jwt.sign(userInfo,"לערבול סיסמא")
+    
+
 
 }
 
