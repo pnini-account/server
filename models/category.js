@@ -18,7 +18,7 @@ const Category = sequelize.define(
             text: {
                 type: DataTypes.STRING,
             },
-            defult: {
+            default: {
                 type: DataTypes.TINYINT,
             },
             userId: {
