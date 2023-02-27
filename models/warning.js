@@ -8,10 +8,10 @@ const Warning = sequelize.define(
     primaryKey: true,
     autoIncrement: true
     },
-    userId: {
+    user_id: {
     type: DataTypes.INTEGER,
     },
-    fileId: {
+    file_id: {
     type: DataTypes.INTEGER,
     },
     text: {

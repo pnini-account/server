@@ -35,4 +35,3 @@ sendEmail = (to,subject,massege)=>{
 }
 //
 
-// email()

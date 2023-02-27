@@ -8,15 +8,19 @@ const Folder = sequelize.define(
             primaryKey: true,
             autoIncrement: true
         },
+        user_id: {
+            type: DataTypes.INTEGER,
+        },
         name: {
             type: DataTypes.STRING,
         },
-        parentId: {
+        parentId_category: {
             type: DataTypes.INTEGER,
         },
-        userId: {
+        parentId_folder: {
             type: DataTypes.INTEGER,
         },
+        
         filesId: {
             type: DataTypes.INTEGER
         },
