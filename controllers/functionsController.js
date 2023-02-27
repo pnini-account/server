@@ -46,7 +46,7 @@ const addDefoultTable = async(user) =>{
 
 }
 
-exports addDefoultTable
+// exports addDefoultTable
 
 
 
