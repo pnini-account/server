@@ -23,9 +23,7 @@ const login = async (req, res) => {
 
     const userInfo = {
         id: foundUser.id, name: foundUser.name,
-        email: foundUser.email, warningsId: foundUser.warningsId,
-        filesId: foundUser.filesId, foldersId: foundUser.foldersId,
-        categoriesId: foundUser.categoriesId
+        email: foundUser.email
     }
 
     //const accessToken = jwt.sign(userInfo,"לערבול סיסמא")
@@ -35,8 +33,8 @@ const login = async (req, res) => {
 }
 
 const register = async (req, res) => {
-    const { name, email, password, warningsId, filesId } = req.body
-    if (!name || !email || !password || !warningsId || !filesId) {// Confirm data
+    const { name, email, password } = req.body
+    if (!name || !password ) {// Confirm data
         return res.status(400).json({ message: 'All fields are required' })
     }
 
@@ -46,15 +44,18 @@ const register = async (req, res) => {
     }
     const hashedPwd = await bcrypt.hash(password, 10)
 
-    const userObject = { name, email, password, warningsId, filesId: hashedPwd }
+    const userObject = { name, email, password: hashedPwd }
     const user = await User.create(userObject)
     if (user) { // Created
+        //להוסיף טבלה דיפולטיבית
+        addDefoultTable(user)
         return res.status(201).json({
             message: `New user ${user.userName} created`
         })
     } else {
         return res.status(400).json({ message: 'Invalid user data received' })
     }
+
 
 }
 

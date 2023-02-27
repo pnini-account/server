@@ -5,7 +5,7 @@ const email = require("../utils/email");
 const sendEmail = require("../utils/email");
 
 //כניסה לקטגוריה
-enterIntoCategory = async(id) => {
+const enterIntoCategory = async(id) => {
     allFolders = await(folderDal.getFoldersByParentId(id))
     if (!allFolders) {
         return res.status(400).json({ message: 'folder not found' })
@@ -13,7 +13,7 @@ enterIntoCategory = async(id) => {
     return allFolders;
 }
 //כניסה לתיקייה 
-enterIntoFolder = async(id) => {
+const enterIntoFolder = async(id) => {
     allFolders = await(folderDal.getFoldersByParentId(id))
     allFiles = await(fileDal.getFilesByParentId(id))
     allFoldersFiles = allFolders.concat(allFiles)
@@ -23,15 +23,35 @@ enterIntoFolder = async(id) => {
     return allFoldersFiles;
 }
 //כמה יש בכל תקייה
-countFolder = async(id) => {
+const countFolder = async(id) => {
     const allFoldersFiles = await enterIntoFolder(id)
     const count = allFoldersFiles.length;
     return count;
 }
 //שליחה למייל
-sendEmail = (to,subject,massege)=>{
+const sendEmail = (to,subject,massege)=>{
+    //טיפול בתוכן המייל - מסמך/ אזהרה
    // email('36213259948@mby.co.il', 'I love you', 'How are you?');
    email(to,subject,massege);
 }
-//
+
+//חיפוש קובץ/תיקייהgit 
+
+//הצגת אזהרות בתוקף
+
+//הפעלת נודניק על אזהרה
+
+//להוסיף טבלה דיפולטיבית
+const addDefoultTable = async(user) =>{
+
+}
+
+exports addDefoultTable
+
+
+
+
+
+
+
 
