@@ -1,5 +1,6 @@
 const db = require('../models/index')
 const bcrypt= require('bcrypt')
+const jwt= require('jsonwebtoken')
 
  const User = db.user;
 // const bcrypt= require('bcrypt');
@@ -17,11 +18,11 @@ const login = async (req, res) => {
         }
     const match = await bcrypt.compare(password, foundUser.password)
     if (!match) return res.status(401).json({ message: 'Unauthorized' })
+    res.send("Logged In")
 
+    const userInfo= {id:foundUser.id,name:foundUser.name,
+        roles:foundUser.roles, username:foundUser.username}
         
-        
-
-
 
 }
 
@@ -47,6 +48,5 @@ return res.status(400).json({ message: 'Invalid user data received' })
 }
 
 }
-
 
 module.exports = {login, register}
