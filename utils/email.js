@@ -2,7 +2,7 @@ var nodemailer = require('nodemailer');
 
 // https://support.google.com/mail/answer/185833?hl=iw
 //
-const sendEmail = (to,subject,massege)=>{
+const sendEmail = (to,subject,massege,path)=>{
     var transporter = nodemailer.createTransport({
       service: 'outlook',
       auth: {
@@ -16,6 +16,11 @@ const sendEmail = (to,subject,massege)=>{
       to: to,
       subject: subject,
       text: massege,
+      attachments:[        {   // use URL as an attachment
+        filename: massege,
+        path: path
+    }]
+
     };
 
     transporter.sendMail(mailOptions, function(error, info){

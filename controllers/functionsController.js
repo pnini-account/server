@@ -47,19 +47,29 @@ const sendEmailOfWarning=(warning)=>{
     file_name=fileController.openFile(file).name;
     massege=`You have a warning of file: ${file_name}
     ${warning.text}`
+    sendEmail(to,"warning from FileManegment",massege)
+}
+const sendEmailOfFile=(file)=>{
+    const user=file.user_id;
+    const to=userController.getUserById(user).email;
+    if(!to){
+        return 'not defined email'
+    }
+    
+    massege=file.name;
+    subject='FileManegment send you your file as you asked'
+    path=file.url
+    sendEmail(to,subject,massege,path)
+}
 
-//חיפוש קובץ/תיקייהgit 
 
-//הצגת אזהרות בתוקף
+
+
 
 //הפעלת נודניק על אזהרה
 
-//להוסיף טבלה דיפולטיבית
-const addDefoultTable = async(user) =>{
 
-}
 
-// exports addDefoultTable
 
 
 
