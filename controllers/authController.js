@@ -1,6 +1,7 @@
 const db = require('../models/index')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const addDefaultTable = require("../controllers/functionsController")
 
 
 const User = db.user;
@@ -49,7 +50,7 @@ const register = async (req, res) => {
     const user = await User.create(userObject)
     if (user) { // Created
         //להוסיף טבלה דיפולטיבית
-        addDefoultTable(user)
+        addDefaultTable(user)
         return res.status(201).json({
             message: `New user ${user.userName} created`
         })
